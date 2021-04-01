@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Avatar, Button, Card, CardActions, CardContent, Typography, Divider, IconButton, List, ListItem, ListItemText, ListItemAvatar } from '@material-ui/core';
-import { AttachMoney, AccountBalance, AccountBalanceWallet, Assessment } from '@material-ui/icons';
+import { Avatar, Box, Button, Card, CardActions, CardContent, Typography, Divider, IconButton, List, ListItem, ListItemText, ListItemAvatar } from '@material-ui/core';
+import { AttachMoney, AccountBalance, AccountBalanceWallet, Assessment, Edit } from '@material-ui/icons';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -11,6 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
+
 
 import useStyles from './styles';
 
@@ -79,32 +80,35 @@ const AssetsCard = (props) => {
             <ListItem>
               <ListItemAvatar>
                 <Avatar className={classes.avatarIncome}>
-                  <IconButton onClick="#" style={{color: "white"}}>
-                    <AttachMoney />
-                  </IconButton>
+                  <AttachMoney />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary="Cash" secondary="$3,128"></ListItemText>
+              <IconButton onClick="#">
+                <Edit />
+              </IconButton>
             </ListItem>
             <ListItem>
               <ListItemAvatar>
                 <Avatar className={classes.avatarIncome}>
-                  <IconButton onClick="#" style={{color: "white"}}>
-                    <AccountBalance />
-                  </IconButton>
+                  <AccountBalance />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary="Savings" secondary="$13,698"></ListItemText>
+              <IconButton onClick="#">
+                <Edit />
+              </IconButton>
             </ListItem>
             <ListItem>
               <ListItemAvatar>
                 <Avatar className={classes.avatarIncome}>
-                  <IconButton onClick="#" style={{color: "white"}}>
-                    <AccountBalanceWallet />
-                  </IconButton>
+                  <AccountBalanceWallet />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary="Checking" secondary="$7,362"></ListItemText>
+              <IconButton onClick="#">
+                <Edit />
+              </IconButton>
             </ListItem>
             {/* ----------------------------------------------------- */}
           </List>

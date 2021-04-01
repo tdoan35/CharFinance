@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, CardActions, CardContent, Typography, Divider, List } from '@material-ui/core';
+import { Box, Button, Card, CardActions, CardContent, Grid, Paper, Typography, Divider, List } from '@material-ui/core';
 
 import useStyles from './styles';
 
@@ -18,7 +18,32 @@ const NetworthCard = () => {
           <Divider />
           <List className={classes.list}>
             {/*--------------------- LIST ITEMS ---------------------*/}
-            
+            <Grid container className={classes.grow} >
+              <Grid item xs={12}>
+                <Paper className={classes.profilePaper} style={{backgroundColor: 'rgba(236, 239, 241, 0.25)'}}>
+                  <Box mt={2} display="flex" justifyContent="space-between">
+                    <Typography variant="h5">$178,938</Typography>
+                    <Typography variant="overline" gutterBottom>Net Total</Typography>
+                  </Box>
+                </Paper>
+              </Grid>
+              <Grid item xs={12}>
+                <Paper className={classes.profilePaper} style={{backgroundColor: 'rgba(53, 115, 11, 0.25)'}}>
+                  <Box mt={2} display="flex" justifyContent="space-between">
+                    <Typography variant="h5">$298,438</Typography>
+                    <Typography variant="overline" gutterBottom>Assets</Typography>
+                  </Box>
+                </Paper>
+              </Grid>
+              <Grid item xs={12}>
+                <Paper className={classes.profilePaper} style={{backgroundColor: '#ffd1d1'}}>
+                  <Box mt={2} display="flex" justifyContent="space-between">
+                    <Typography variant="h5">($119,500)</Typography>
+                    <Typography variant="overline" gutterBottom>Assets</Typography>
+                  </Box>
+                </Paper>
+              </Grid>
+            </Grid>
             {/* ----------------------------------------------------- */}
           </List>
           <Divider />

@@ -20,16 +20,23 @@ module.exports = {
         }
       },
       {
-        test: /\.svg$/,
-        use: ['@svgr/webpack'],
+        test: /\.html$/i,
+        loader: 'html-loader',
       },
       {
-        test: /\.(png|jp(e*)g|gif)$/,
+        test: /\.(png|jpg|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
           },
         ],
+      },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
       },
       {
         test: /\.css$/i,

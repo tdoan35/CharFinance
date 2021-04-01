@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Avatar, Button, Card, CardActions, CardContent, Typography, Divider, IconButton, List, ListItem, ListItemText, ListItemAvatar } from '@material-ui/core';
-import { AttachMoney, AccountBalance, AccountBalanceWallet } from '@material-ui/icons';
+import { AttachMoney, AccountBalance, AccountBalanceWallet, Edit } from '@material-ui/icons';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -82,32 +82,35 @@ const LiabilitiesCard = (props) => {
             <ListItem>
               <ListItemAvatar>
                 <Avatar className={classes.avatarExpense}>
-                  <IconButton onClick="#" style={{color: "white"}}>
-                    <AttachMoney />
-                  </IconButton>
+                  <AttachMoney />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary="Credit Cards" secondary="$1,458"></ListItemText>
+              <IconButton onClick="#">
+                <Edit />
+              </IconButton>
             </ListItem>
             <ListItem>
               <ListItemAvatar>
                 <Avatar className={classes.avatarExpense}>
-                  <IconButton onClick="#" style={{color: "white"}}>
-                    <AccountBalance />
-                  </IconButton>
+                  <AccountBalance />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary="Mortgages" secondary="$153,698"></ListItemText>
+              <IconButton onClick="#">
+                <Edit />
+              </IconButton>
             </ListItem>
             <ListItem>
               <ListItemAvatar>
                 <Avatar className={classes.avatarExpense}>
-                  <IconButton onClick="#" style={{color: "white"}}>
-                    <AccountBalanceWallet />
-                  </IconButton>
+                  <AccountBalanceWallet />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary="Loans" secondary="$2,362"></ListItemText>
+              <IconButton onClick="#">
+                <Edit />
+              </IconButton>
             </ListItem>
             {/* ----------------------------------------------------- */}
           </List>
