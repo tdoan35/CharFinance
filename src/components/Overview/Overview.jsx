@@ -2,12 +2,33 @@ import React, { useState, useEffect } from 'react';
 import { Avatar, Box, Button, ButtonGroup, Card, CardActions, CardContent,  Grid, Typography, Divider, Paper, IconButton, List, ListItem, ListItemSecondaryAction, ListItemText, ListItemAvatar } from '@material-ui/core';
 import { AttachMoney, AccountBalance, AccountBalanceWallet, Edit } from '@material-ui/icons';
 
-// import AssetsCard from './AssetsCard/AssetsCard';
+import AssetsCard from './AssetsCard/AssetsCard';
 import useStyles from './styles';
 
 const Overview = () => {
+  const [name, setName] = useState({ 
+    firstName: '', 
+    lastName: '',
+    username: ''
+  });
 
   const classes = useStyles();
+
+  useEffect( () => {
+    fetch('http://localhost:3000/api/getUser')
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setName(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, []);
+
 
   return (
     <div>
@@ -16,8 +37,7 @@ const Overview = () => {
       </Typography>
       <Typography variant="h5">
         <Box fontWeight="fontWeightBold">
-          {/* Good Evening, {name.firstName} */}
-          Good Evening, Beth
+          Good Evening, {name.firstName}
         </Box>
       </Typography>
       <Typography variant="subtitle1" color="textSecondary" gutterBottom>
