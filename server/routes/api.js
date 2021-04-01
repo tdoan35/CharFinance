@@ -22,18 +22,31 @@ router.get('/getUser',
     const profile = {
       firstName: res.locals[0].firstName,
       lastName: res.locals[0].lastName,
-      username: res.locals[0].username
+      username: res.locals[0].username,
+      assets: res.locals[0].assets,
     }
 
-    console.log('the profile names obj profiles is: ', profile);
+    console.log('the profile obj is: ', profile);
     res.status(200).json(profile);
   }
 );
 
+router.get('/getAssets',
+  dashboardController.getAssets,
+  (req, res) => {
+    const assets = res.locals[0].assets;
+
+    console.log('the assets objs of the user is: ', assets);
+
+  }
+
+);
+
+
 router.put('/addAsset',
   dashboardController.addAsset,
   (req, res) => {
-    res.status(200).json('Success!!!')
+    res.redirect('./client/dashboard');
   }
 );
 

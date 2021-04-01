@@ -32,6 +32,7 @@ const Overview = (props) => {
         <Grid item xs={3}>
           <AssetsCard 
             username={props.username}
+            assets={props.assets}
           />
         </Grid>
         <Grid item xs={3}>

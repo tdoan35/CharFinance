@@ -12,7 +12,7 @@ import Select from '@material-ui/core/Select';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
-
+import AssetsList from './AssetsList/AssetsList';
 import useStyles from './styles';
 
 const AssetsCard = (props) => {
@@ -53,7 +53,7 @@ const AssetsCard = (props) => {
       .then(
         (result) => {
           setIsLoaded(true);
-          setProfile(result);
+          setAmount(result);
         },
         (error) => {
           setIsLoaded(true);
@@ -75,43 +75,9 @@ const AssetsCard = (props) => {
             Assets
           </Typography>
           <Divider />
-          <List className={classes.list}>
-            {/*--------------------- LIST ITEMS ---------------------*/}
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar className={classes.avatarIncome}>
-                  <AttachMoney />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary="Cash" secondary="$3,128"></ListItemText>
-              <IconButton onClick="#">
-                <Edit />
-              </IconButton>
-            </ListItem>
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar className={classes.avatarIncome}>
-                  <AccountBalance />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary="Savings" secondary="$13,698"></ListItemText>
-              <IconButton onClick="#">
-                <Edit />
-              </IconButton>
-            </ListItem>
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar className={classes.avatarIncome}>
-                  <AccountBalanceWallet />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary="Checking" secondary="$7,362"></ListItemText>
-              <IconButton onClick="#">
-                <Edit />
-              </IconButton>
-            </ListItem>
-            {/* ----------------------------------------------------- */}
-          </List>
+            <AssetsList 
+              assets={props.assets}
+            />
           <Divider />
         </CardContent>
         <CardActions>

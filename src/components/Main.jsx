@@ -27,7 +27,8 @@ const Main = () => {
   const [profile, setProfile] = useState({ 
     firstName: '', 
     lastName: '',
-    username: ''
+    username: '',
+    assets: {},
   });
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -271,6 +272,7 @@ const Main = () => {
         <Overview 
           firstName={profile.firstName}
           username={profile.username}
+          assets={profile.assets}
         />
       </main>
     </div>

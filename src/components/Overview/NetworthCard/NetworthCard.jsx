@@ -22,7 +22,7 @@ const NetworthCard = () => {
               <Grid item xs={12}>
                 <Paper className={classes.profilePaper} style={{backgroundColor: 'rgba(236, 239, 241, 0.25)'}}>
                   <Box mt={2} display="flex" justifyContent="space-between">
-                    <Typography variant="h5">$178,938</Typography>
+                    <Typography variant="h5"><strong>$178,938</strong></Typography>
                     <Typography variant="overline" gutterBottom>Net Total</Typography>
                   </Box>
                 </Paper>

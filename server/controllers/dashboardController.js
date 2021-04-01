@@ -156,5 +156,12 @@ dashboardController.getUsername = async (req, res, next) => {
   return next();
 };
 
+dashboardController.getAssets = async (req, res, next) => {
+
+  res.locals = await Users.find({ _id: req.cookies.ssid });
+
+  return next();
+};
+
 
 module.exports = dashboardController;
