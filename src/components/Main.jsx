@@ -16,7 +16,6 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { AppBar, Badge, CssBaseline, Drawer, Divider, Menu, MenuItem } from '@material-ui/core';
 
-
 import useStyles from './styles';
 import ProfileCard from './ProfileCard/ProfileCard';
 import Overview from './Overview/Overview';
@@ -137,7 +136,7 @@ const Main = () => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap>
-              Squirtle
+              Charmander
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>

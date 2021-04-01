@@ -20,6 +20,10 @@ module.exports = {
         }
       },
       {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
         test: /\.s[ac]ss$/i,
         exclude: /(node_modules)/,
         use: [
@@ -35,6 +39,10 @@ module.exports = {
   },
   devServer: {
     publicPath: '/build/',
+    proxy: {
+      '/client' : 'http://localhost:3000'
+    },
+    hot: true
   },
   resolve: {
     extensions: ['.js', '.jsx']

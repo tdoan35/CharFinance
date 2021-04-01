@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import Main from './components/Main';
-
 
 const App = () => {
 
   return (
     <div>
-      <Main />
+      <Switch>
+        <Route path="/dashboard">
+          <Main />
+        </Route>
+      </Switch>
     </div>
   )
 }
