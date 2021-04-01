@@ -9,6 +9,24 @@ const userSchema = new Schema({
   password: {type: String, required: true},
   firstName: {type: String, required: true},
   lastName: {type: String, required: true},
+  assets: {
+    cash: {type: Number, default: 0},
+    savings: {type: Number, default: 0},
+    checking: {type: Number, default: 0},
+    securities: {type: Number, default: 0},
+    properties: {type: Number, default: 0},
+    investments: {type: Number, default: 0},
+    otherAssets: {type: Number, default: 0},
+  },
+  liabilities: {
+    creditCards: {type: Number, default: 0},
+    mortgages: {type: Number, default: 0},
+    loans: {type: Number, default: 0},
+    accountsPayable: {type: Number, default: 0},
+    billsPayable: {type: Number, default: 0},
+    taxPayables: {type: Number, default: 0},
+    otherDebts: {type: Number, default: 0},
+  }
 });
 
 // Hash password before saving to DB ---------------------------------
@@ -28,15 +46,5 @@ userSchema.pre('save', function(next) {
     })
   });
 });
-// -------------------------------------------------------------------
-
-// Hash the user inputted password and return boolean if matched
-// userSchema.methods.comparePassword = function(candidatePassword, cb) {
-//   bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-//     if (err) return cb(err);
-//     return cb(null, isMatch);
-//   })
-// }
-// -------------------------------------------------------------------
 
 module.exports = mongoose.model('Users', userSchema);

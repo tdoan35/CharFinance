@@ -30,7 +30,19 @@ router.get('/getUser',
   }
 );
 
+router.put('/addAsset',
+  dashboardController.addAsset,
+  (req, res) => {
+    res.status(200).json('Success!!!')
+  }
+);
 
+router.put('/addDebt',
+  dashboardController.addDebt,
+  (req, res) => {
+    res.status(200).json('Success!!!')
+  }
+);
 
 
 

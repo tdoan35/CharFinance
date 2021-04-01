@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -14,7 +14,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { AppBar, Badge, CssBaseline, Drawer, Divider, Menu, MenuItem } from '@material-ui/core';
+import { AppBar, Box, Badge, CssBaseline, Drawer, Divider, Menu, MenuItem, SvgIcon, Avatar } from '@material-ui/core';
+import WhatshotRoundedIcon from '@material-ui/icons/WhatshotRounded';
+import WhatshotTwoToneIcon from '@material-ui/icons/WhatshotTwoTone';
 
 import useStyles from './styles';
 import ProfileCard from './ProfileCard/ProfileCard';
@@ -22,6 +24,30 @@ import Overview from './Overview/Overview';
 import { mainListItems, secondaryListItems } from './DrawerItems/DrawerItems';
 
 const Main = () => {
+  const [profile, setProfile] = useState({ 
+    firstName: '', 
+    lastName: '',
+    username: ''
+  });
+
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect( () => {
+    fetch('http://localhost:3000/api/getUser')
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setProfile(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, []);
+
   const classes = useStyles();
   const theme = useTheme();
 
@@ -115,9 +141,10 @@ const Main = () => {
     </Menu>
   );
 
+ 
+
   return (
     <div className={classes.root}>
-      <CssBaseline />
       <div className={classes.grow}>
         <AppBar
           position="fixed"
@@ -135,9 +162,17 @@ const Main = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap>
-              Charmander
-            </Typography>
+            { open ? <div></div> : 
+              <Box display="flex" alignItems="center">
+                <Box mr={2}>
+                  <WhatshotRoundedIcon />
+                </Box>
+                <Typography variant="h6" noWrap>
+                  Charmander
+                </Typography>
+              </Box>
+            }
+            
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
@@ -200,12 +235,24 @@ const Main = () => {
         }}
       >
         <div className={classes.drawerHeader}>
+          <Box mr={2}>
+            <Avatar style={{backgroundColor: 'rgb(255 188 103)'}}>
+              <WhatshotTwoToneIcon style={{color: '#aa2e25'}}/>
+            </Avatar>
+          </Box>
+          <Typography variant="h6" noWrap>
+            Charmander
+          </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
         <Divider />
-          {ProfileCard()}
+          <ProfileCard 
+            firstName={profile.firstName}
+            lastName={profile.lastName}
+            username={profile.username} 
+          />
         <Divider />
         <List>
           {mainListItems}
@@ -221,7 +268,10 @@ const Main = () => {
         })}
       >
         <div className={classes.drawerHeader} />
-        {Overview()}
+        <Overview 
+          firstName={profile.firstName}
+          username={profile.username}
+        />
       </main>
     </div>
   );

@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import { Avatar, Button, Card, CardActions, CardContent, Typography, Divider, IconButton, List, ListItem, ListItemText, ListItemAvatar } from '@material-ui/core';
-import { AttachMoney, AccountBalance, AccountBalanceWallet, Assessment } from '@material-ui/icons';
+import { AttachMoney, AccountBalance, AccountBalanceWallet } from '@material-ui/icons';
+import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
+import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
@@ -14,13 +17,13 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 
 import useStyles from './styles';
 
-const AssetsCard = (props) => {
+const LiabilitiesCard = (props) => {
   const [open, setOpen] = useState(false);
-  const [asset, setAsset] = useState('');
+  const [debt, setDebt] = useState('');
   const [amount, setAmount] = useState('');
 
   const handleTypeChange = (event) => {
-    setAsset(event.target.value);
+    setDebt(event.target.value);
   };
 
   const handleAmountChange = (event) => {
@@ -39,7 +42,7 @@ const AssetsCard = (props) => {
   const [error, setError] = useState(null);
 
   const handleSubmit = () => {
-    const submitString = 'username=' + props.username + '&' + asset + '=' + amount;
+    const submitString = 'username=' + props.username + '&' + debt + '=' + amount;
 
     const requestOptions = {
       method: 'PUT',
@@ -47,7 +50,7 @@ const AssetsCard = (props) => {
       body: submitString
     }
 
-    fetch('http://localhost:3000/api/addAsset', requestOptions)
+    fetch('http://localhost:3000/api/addDebt', requestOptions)
       .then(response => response.json())
       .then(
         (result) => {
@@ -67,44 +70,44 @@ const AssetsCard = (props) => {
 
   return (
     <div>
-      {/* --------------------- ASSETS CARD --------------------- */}
+      {/* --------------------- LIABILITIES CARD --------------------- */}
       <Card className={classes.cardRoot}>
         <CardContent className={classes.CardContent}>
           <Typography variant="overline" display="block">
-            Assets
+            Liabilities
           </Typography>
           <Divider />
           <List className={classes.list}>
             {/*--------------------- LIST ITEMS ---------------------*/}
             <ListItem>
               <ListItemAvatar>
-                <Avatar className={classes.avatarIncome}>
+                <Avatar className={classes.avatarExpense}>
                   <IconButton onClick="#" style={{color: "white"}}>
                     <AttachMoney />
                   </IconButton>
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary="Cash" secondary="$3,128"></ListItemText>
+              <ListItemText primary="Credit Cards" secondary="$1,458"></ListItemText>
             </ListItem>
             <ListItem>
               <ListItemAvatar>
-                <Avatar className={classes.avatarIncome}>
+                <Avatar className={classes.avatarExpense}>
                   <IconButton onClick="#" style={{color: "white"}}>
                     <AccountBalance />
                   </IconButton>
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary="Savings" secondary="$13,698"></ListItemText>
+              <ListItemText primary="Mortgages" secondary="$153,698"></ListItemText>
             </ListItem>
             <ListItem>
               <ListItemAvatar>
-                <Avatar className={classes.avatarIncome}>
+                <Avatar className={classes.avatarExpense}>
                   <IconButton onClick="#" style={{color: "white"}}>
                     <AccountBalanceWallet />
                   </IconButton>
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary="Checking" secondary="$7,362"></ListItemText>
+              <ListItemText primary="Loans" secondary="$2,362"></ListItemText>
             </ListItem>
             {/* ----------------------------------------------------- */}
           </List>
@@ -112,27 +115,27 @@ const AssetsCard = (props) => {
         </CardContent>
         <CardActions>
           <Button variant="outlined" size="small">Show All</Button>
-          <Button variant="contained" size="small" color="primary" onClick={handleClickOpen}>Add Asset</Button>
+          <Button variant="contained" size="small" color="primary" onClick={handleClickOpen}>Add Debt</Button>
           <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose}>
-            <DialogTitle>Add an Asset</DialogTitle>
+            <DialogTitle>Add a Liability</DialogTitle>
             <DialogContent>
               <form className={classes.container}>
                 <FormControl className={classes.formControl}>
-                  <InputLabel htmlFor="demo-dialog-native">Asset Type</InputLabel>
+                  <InputLabel htmlFor="demo-dialog-native">Debt Type</InputLabel>
                   <Select
                     native
-                    value={asset}
+                    value={debt}
                     onChange={handleTypeChange}
                     input={<Input id="demo-dialog-native" />}
                   >
                     <option aria-label="None" value="" />
-                    <option value={'cash'}>Cash</option>
-                    <option value={'savings'}>Savings</option>
-                    <option value={'checking'}>Checking</option>
-                    <option value={'securities'}>Securities</option>
-                    <option value={'properties'}>Properties</option>
-                    <option value={'investments'}>Investments</option>
-                    <option value={'otherAssets'}>Other Assets</option>
+                    <option value={'creditCards'}>Credit Cards</option>
+                    <option value={'mortgages'}>Mortgages</option>
+                    <option value={'loans'}>Loans</option>
+                    <option value={'accountsPayable'}>Accounts Payable</option>
+                    <option value={'billsPayable'}>Bills Payable</option>
+                    <option value={'taxPayables'}>Tax Payables</option>
+                    <option value={'otherDebts'}>Other Debts</option>
                   </Select>
                 </FormControl>
                 <FormControl className={classes.formControl} variant="outlined">
@@ -158,10 +161,9 @@ const AssetsCard = (props) => {
           </Dialog>
         </CardActions>
       </Card>
-      {/* --------------------- CLOSE ASSETS CARD --------------------- */} 
+      {/* --------------------- CLOSE LIABILITIES CARD --------------------- */} 
     </div>
   )
 }
 
-
-export default AssetsCard;
+export default LiabilitiesCard
