@@ -3,7 +3,47 @@ import { Box, Button, Card, CardActions, CardContent, Grid, Paper, Typography, D
 
 import useStyles from './styles';
 
-const NetworthCard = () => {
+const NetworthCard = (props) => {
+
+  // props.assets = {}
+  // props.assets = {}
+
+
+  // const assets = props.assets;
+  // const liabilities = props.liabilities;
+
+  const totalAssetValue = (
+    props.assets.cash +
+    props.assets.savings +
+    props.assets.checking +
+    props.assets.securities +
+    props.assets.properties +
+    props.assets.investments +
+    props.assets.otherAssets
+  );
+
+  const totalDebtValue = (
+    props.liabilities.creditCards +
+    props.liabilities.mortgages +
+    props.liabilities.loans +
+    props.liabilities.accountsPayable +
+    props.liabilities.billsPayable +
+    props.liabilities.taxPayables +
+    props.liabilities.otherDebts 
+  );
+
+  const totalNetWorth = totalAssetValue - totalDebtValue;
+  
+  const netWorth = () => {
+    if (totalNetWorth > 0) {
+      const pos = `$${totalNetWorth.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
+      return pos;
+    } else {
+      const neg = `($${totalNetWorth.toString().slice(1).replace(/\B(?=(\d{3})+(?!\d))/g, ",")})`
+      return neg;
+    }
+  }
+
 
   const classes = useStyles();
 
@@ -22,7 +62,7 @@ const NetworthCard = () => {
               <Grid item xs={12}>
                 <Paper className={classes.profilePaper} style={{backgroundColor: 'rgba(236, 239, 241, 0.25)'}}>
                   <Box mt={2} display="flex" justifyContent="space-between">
-                    <Typography variant="h5"><strong>$178,938</strong></Typography>
+                    <Typography variant="h5"><strong>{netWorth()}</strong></Typography>
                     <Typography variant="overline" gutterBottom>Net Total</Typography>
                   </Box>
                 </Paper>
@@ -30,7 +70,7 @@ const NetworthCard = () => {
               <Grid item xs={12}>
                 <Paper className={classes.profilePaper} style={{backgroundColor: 'rgba(53, 115, 11, 0.25)'}}>
                   <Box mt={2} display="flex" justifyContent="space-between">
-                    <Typography variant="h5">$298,438</Typography>
+                    <Typography variant="h5">{`$${totalAssetValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</Typography>
                     <Typography variant="overline" gutterBottom>Assets</Typography>
                   </Box>
                 </Paper>
@@ -38,8 +78,8 @@ const NetworthCard = () => {
               <Grid item xs={12}>
                 <Paper className={classes.profilePaper} style={{backgroundColor: '#ffd1d1'}}>
                   <Box mt={2} display="flex" justifyContent="space-between">
-                    <Typography variant="h5">($119,500)</Typography>
-                    <Typography variant="overline" gutterBottom>Assets</Typography>
+                    <Typography variant="h5">{`($${totalDebtValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")})`}</Typography>
+                    <Typography variant="overline" gutterBottom>Debts</Typography>
                   </Box>
                 </Paper>
               </Grid>

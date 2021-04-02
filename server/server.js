@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
+const axios = require('axios');
 
 const app = express();
 const path = require('path');
@@ -42,6 +43,42 @@ app.use('/assets', express.static(path.join(__dirname,'../src/assets')))
 // statically serve everything in the build folder on the route '/build'
 app.use('/build', express.static(path.join(__dirname, '../build')));
 // -------------------------------------------------------------------
+
+
+// ---------------------- GITHUB OAUTH ROUTE HANDLING ----------------------
+app.get('/github', (req, res) => {
+  res.redirect('https://github.com/login/oauth/authorize?client_id=d2488361cab711ad9de2');
+});
+
+app.get('/oauth-callback', 
+  ({ query: { code } }, res, next) => {
+    const body = {
+      client_id: 'd2488361cab711ad9de2',
+      client_secret: 'b9dd554efc50fcc73bc4824bd7c5a3801e7ded91',
+      code,
+    }
+    const opts = { headers: { accept: 'application/json' } };
+
+    axios
+      .post('https://github.com/login/oauth/access_token', body, opts)
+      .then((_res) => _res.data.access_token)
+      .then((token) => {
+        console.log('My token:', token);
+        res.locals.ssid = token;
+        res.redirect('/dashboard');
+        next();
+      })
+      .catch((err) => res.status(500).json({ err: err.message }));
+  }, 
+  cookieController.setSSIDCookie, 
+  // sessionController.startSession, 
+  (req, res) => {
+    // what should happen here on successful sign up?
+    res.redirect('/dashboard');
+  }
+);
+
+// -------------------------------------------------------------------------
 
 
 // ------------------------ PUBLIC ROUTES --------------------------

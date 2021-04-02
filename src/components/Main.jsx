@@ -29,6 +29,7 @@ const Main = () => {
     lastName: '',
     username: '',
     assets: {},
+    liabilities: {},
   });
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -98,6 +99,7 @@ const Main = () => {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}><a href='http://localhost:3000/login'>Sign Out</a></MenuItem>
     </Menu>
   );
 
@@ -273,6 +275,7 @@ const Main = () => {
           firstName={profile.firstName}
           username={profile.username}
           assets={profile.assets}
+          liabilities={profile.liabilities}
         />
       </main>
     </div>

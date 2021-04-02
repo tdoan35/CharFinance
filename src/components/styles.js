@@ -14,7 +14,7 @@ export default makeStyles((theme) => ({
     '*::-webkit-scrollbar-thumb': {
       backgroundColor: 'rgba(0,0,0,.1)',
       outline: '0px solid slategrey',
-      visibility: 'hidden',
+      visibility: 'visible',
     },
     '*::hover::-webkit-scrollbar-thumb': {
       visibility: 'visible',

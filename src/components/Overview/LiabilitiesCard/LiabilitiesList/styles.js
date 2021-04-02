@@ -1,9 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
 export default makeStyles((theme) => ({
-  grow: {
-    flexGrow: 1,
-  },
   cardRoot: {
     flexGrow: 1,
     height: 350,
@@ -17,21 +14,25 @@ export default makeStyles((theme) => ({
   cardContent: {
     maxHeight: 300,
   },
-  profilePaper: {
-    margin: 'auto',
-    color: theme.palette.text.secondary,
-    marginTop: '8px',
-    paddingLeft: '8px',
-    paddingRight: '16px',
-    paddingBottom: '6px',
-    paddingTop: '1px',
-    border: '10px',
-    borderColor: 'black',
-    borderRadius: '8px',
-  },
   list: {
     height: '220px',
     maxHeight: '220px',
     overflow: 'auto',
+  },
+  avatarIncome: {
+    color: '#fff',
+    backgroundColor: 'green',
+  },
+  avatarExpense: {
+    color: '#fff',
+    backgroundColor: '#aa2e25',
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
   },
 }));

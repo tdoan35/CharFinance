@@ -4,112 +4,104 @@ import { AttachMoney, AccountBalance, AccountBalanceWallet, Assessment, Book, Ho
 
 import useStyles from './styles';
 
-const AssetsList = (props) => {
 
-  // props.assets = {
-  //   cash: 120,
-  //   savings: 1450,
-  //   checking: 160,
-  //   securities: 6130,
-  //   properties: 0,
-  //   investments: 0,
-  //   otherAssets: 0,
-  // }
 
-  const makeDisplayList = (assets) => {
-    const assetTypes = Object.keys(assets);
+const LiabilitiesList = (props) => {
+
+  const makeDisplayList = (debts) => {
+    const debtTypes = Object.keys(debts);
     const displayList = [];
 
-    assetTypes.forEach(element => {
-      if (assets[element] !== 0) {
-        
+    debtTypes.forEach(element => {
+      if (debts[element] !== 0) {
+      
         switch (element) {
-          case 'cash':
+          case 'creditCards':
             displayList.push(
               <ListItem>
                 <ListItemAvatar>
-                  <Avatar className={classes.avatarIncome}>
+                  <Avatar className={classes.avatarExpense}>
                     <AttachMoney />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText 
-                  primary='Cash' 
-                  secondary={`$${assets[element].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
+                  primary='Credit Cards' 
+                  secondary={`$${debts[element].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
                 />
               </ListItem>
             )
             break;
-          case 'savings':
+          case 'mortgages':
             displayList.push(
               <ListItem>
                 <ListItemAvatar>
-                  <Avatar className={classes.avatarIncome}>
+                  <Avatar className={classes.avatarExpense}>
                     <AccountBalance />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText 
-                  primary='Savings' 
-                  secondary={`$${assets[element].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
+                  primary='Mortgages' 
+                  secondary={`$${debts[element].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
                 />
               </ListItem>
             )
             break;
-          case 'checking':
+          case 'loans':
             displayList.push(
               <ListItem>
                 <ListItemAvatar>
-                  <Avatar className={classes.avatarIncome}>
+                  <Avatar className={classes.avatarExpense}>
                     <AccountBalanceWallet />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText 
-                  primary='Checking' 
-                  secondary={`$${assets[element].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
+                  primary='Loans' 
+                  secondary={`$${debts[element].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
                 />
               </ListItem>
             )
             break;
-          case 'securities':
+          case 'accountsPayable':
             displayList.push(
               <ListItem>
                 <ListItemAvatar>
-                  <Avatar className={classes.avatarIncome}>
+                  <Avatar className={classes.avatarExpense}>
                     <Assessment />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText 
-                  primary='Securities' 
-                  secondary={`$${assets[element].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
+                  primary='Accounts Payable' 
+                  secondary={`$${debts[element].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
                 />
               </ListItem>
             )
             break;
-          case 'properties':
+          case 'billsPayable':
             displayList.push(
               <ListItem>
                 <ListItemAvatar>
-                  <Avatar className={classes.avatarIncome}>
+                  <Avatar className={classes.avatarExpense}>
                     <Home />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText 
-                  primary='Properties' 
-                  secondary={`$${assets[element].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
+                  primary='Bills Payable' 
+                  secondary={`$${debts[element].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
                 />
               </ListItem>
             )
             break;
-          case 'investments':
+          case 'taxPayables':
             displayList.push(
               <ListItem>
                 <ListItemAvatar>
-                  <Avatar className={classes.avatarIncome}>
+                  <Avatar className={classes.avatarExpense}>
                     <Book />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText 
-                  primary='Investments' 
-                  secondary={`$${assets[element].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
+                  primary='Tax Payables' 
+                  secondary={`$${debts[element].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
                 />
               </ListItem>
             )
@@ -118,19 +110,18 @@ const AssetsList = (props) => {
             displayList.push(
               <ListItem>
                 <ListItemAvatar>
-                  <Avatar className={classes.avatarIncome}>
+                  <Avatar className={classes.avatarExpense}>
                     <AttachMoney />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText 
-                  primary='Other Assets' 
-                  secondary={`$${assets[element].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
+                  primary='Other Debts' 
+                  secondary={`$${debts[element].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
                 />
               </ListItem>
             )
             break;
         }
-        
       }
     })
 
@@ -142,10 +133,10 @@ const AssetsList = (props) => {
   return (
     <div>
       <List className={classes.list}>
-        {makeDisplayList(props.assets)}
+        {makeDisplayList(props.liabilities)}
       </List>
     </div>
   )
 }
 
-export default AssetsList;
+export default LiabilitiesList;

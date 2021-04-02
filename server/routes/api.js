@@ -24,6 +24,7 @@ router.get('/getUser',
       lastName: res.locals[0].lastName,
       username: res.locals[0].username,
       assets: res.locals[0].assets,
+      liabilities: res.locals[0].liabilities,
     }
 
     console.log('the profile obj is: ', profile);
@@ -46,7 +47,14 @@ router.get('/getAssets',
 router.put('/addAsset',
   dashboardController.addAsset,
   (req, res) => {
-    res.redirect('./client/dashboard');
+    res.status(200).json('Success!!!')
+  }
+);
+
+router.put('/editAsset',
+  dashboardController.editAsset,
+  (req, res) => {
+    res.status(200).json('Success!!!')
   }
 );
 
@@ -57,7 +65,12 @@ router.put('/addDebt',
   }
 );
 
-
+router.put('/editDebt',
+  dashboardController.editDebt,
+  (req, res) => {
+    res.status(200).json('Success!!!')
+  }
+);
 
 
 
